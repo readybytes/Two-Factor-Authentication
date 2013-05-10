@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="system">
+	<name>Two Way Authentication</name>
+	<author>Team ReadyBytes</author>
+	<creationDate>May 2013</creationDate>
+	<copyright>Copyright (C) 2012 - 2014 Open Source Matters. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>team@readybytes.in</authorEmail>
+	<authorUrl>www.joomlaxi.org</authorUrl>
+	<version>0.1</version>
+	<description> 
+			&lt;u&gt; How to configure it :&lt;/u&gt; &lt;br /&gt;
+				&lt;ol&gt;
+					&lt;li&gt;&lt;span style="color:red"&gt;STEP-1#&lt;/span&gt;Plugin should be enabled.(Status Enable->Save) &lt;/li&gt;
+					&lt;li&gt;&lt;span style="color:red"&gt;STEP-2#&lt;/span&gt; Configure "Two-Way Verification" &lt;/li&gt;
+					&lt;li&gt;&lt;span style="color:red"&gt;STEP-3#&lt;/span&gt; Activate&lt;/li&gt;
+				&lt;/ol&gt;
+			&lt;strong&gt; WARNING : &lt;/strong&gt; &lt;span style="color:red"&gt;Be sure before enabling this plugin,you have properly done system configuration and then scan QR code from your google authentication app.&lt;/span&gt;
+				
+				
+	</description>
+	<files>
+		<filename plugin="2way_verification">2way_verification.php</filename>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<folder>profiles</folder>
+		<folder>lib</folder>
+		<folder>tmpl</folder>
+	</files>
+<!--	<languages>-->
+<!--		<language tag="en-GB">en-GB.plg_system_2way_verification.ini</language>-->
+<!--		<language tag="en-GB">en-GB.plg_system_2way_verification.sys.ini</language>-->
+<!--	</languages>-->
+	<config>
+		<fields name="params">
+
+				<fieldset 
+					name="basic" 
+					addfieldpath="/plugins/system/2way_verification/profiles"
+					label="System-Configuration"
+				>	
+					<field
+						name="secret_key"
+						type="secret_key"
+						id="secret_key"
+						label="Two-Way Verification"				
+						/>
+						
+					<field
+						name="is_enable"
+						type="radio"
+						Title="Enable it after configure"
+						label="Activate"	
+						defaul="0"
+						id='is_enable'		
+						>
+						<option value='0'>No</option>
+						<option value='1'>Yes</option>
+					</field>
+				</fieldset>
+			</fields>
+	</config>
+</extension>
