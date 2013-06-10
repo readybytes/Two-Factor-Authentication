@@ -7,6 +7,12 @@ class GoogleAuthenticationHelper
 	 * Load Jquery
 	 */
 	static function loadJQuery() {
+		$jversion = new JVersion;
+		$release = str_replace('.', '', $jversion->RELEASE);
+		if($release >= 30) {
+			return true;
+		}
+		
 		static $required; 
 		if($required) {	return ;	}
 		$required = true;
@@ -22,18 +28,18 @@ class GoogleAuthenticationHelper
 		
 			function check_configuration()
 			{
-				var GA_desc = $('#GA_desc').val();
-				var GA_secret = $('#GA_secret').val();
+				var GA_desc = jQuery('#GA_desc').val();
+				var GA_secret = jQuery('#GA_secret').val();
 				    	
 		    	if(!GA_desc) {
 		    		alert('Description-field is empty ');
-		    		$('#GA_desc').focus();
+		    		jQuery('#GA_desc').focus();
 		    		return false;
 		    	}
 		    	
 		    	if(!GA_secret ) {
 					alert('Please generate Secret-key ');
-		    		$('#GA_secret').focus();
+		    		jQuery('#GA_secret').focus();
 		    		return false;
 		    	}
 			 	return true;
@@ -46,27 +52,27 @@ class GoogleAuthenticationHelper
 			
 				var loadUrl = 'index.php?plugin=2way_verification';
 				
-			    $( '#GA_newsecret' ).click(function( event ) {
-			        $.get(
+			    jQuery( '#GA_newsecret' ).click(function( event ) {
+			        jQuery.get(
 			        			loadUrl,
 			        			{'method':'getsecretkey'},
 			        			function(response_text) {
-			        				$("#GA_secret").attr('value', response_text);
+			        				jQuery("#GA_secret").attr('value', response_text);
 			        			}
 			        		);
 			        event.preventDefault();
 			    });
 			    
-			    $( '#GA_show_qr' ).click(function( event ) {
+			    jQuery( '#GA_show_qr' ).click(function( event ) {
 			    
-			    	var GA_desc = $('#GA_desc').val();
-			    	var GA_secret = $('#GA_secret').val();
+			    	var GA_desc = jQuery('#GA_desc').val();
+			    	var GA_secret = jQuery('#GA_secret').val();
 			    	
 			    	if(false == check_configuration()){
 			    		return false;
 			    	}
 			    					    
-			        $.get(
+			        jQuery.get(
 			        			loadUrl,
 			        			{
 			        				'method'	: 'getQRcode',
@@ -74,7 +80,7 @@ class GoogleAuthenticationHelper
 			        				'GA_secret'	: GA_secret
 			        			},
 			        			function(response_text) {
-			        				$("#GA_QR_image").html(response_text);
+			        				jQuery("#GA_QR_image").html(response_text);
 			        			}
 			        		);
 			        event.preventDefault();
@@ -82,10 +88,10 @@ class GoogleAuthenticationHelper
 			    
 			    
 			    
-			    $( '#jform_params_is_enable1' ).click(function( event ) {
+			    jQuery( '#jform_params_is_enable1' ).click(function( event ) {
 			    
 			    	if(false == check_configuration()){
-			    		$("#jform_params_is_enable0").attr('checked', 'checked');
+			    		jQuery("#jform_params_is_enable0").attr('checked', 'checked');
 			    		return false;
 			    	}
 			    });
