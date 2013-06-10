@@ -27,14 +27,22 @@ class JFormFieldSecret_Key extends JFormFieldList
 					<input type="text" size="25" id="GA_secret" name="<?php echo $name?>[GA_secret]"  value="<?php echo @$value['GA_secret']; ?>"  />
 				
 				<input type="button" class="button" value="Create new secret" id="GA_newsecret" >
-				<input type="button"  class="button" value="ShowQR code" id="GA_show_qr" 	>
-				
-				<input type="hidden" size="25" value="" id="GA_params" name="<?php echo $name?>[GA_params]['mode']"  title="Mode" />
-				
-				<div id="GA_dialog" class="hide" title="QR Code" >
-					<span id="GA_dialog_header">Please scan this QR/bar Code from your <a href='http://support.google.com/accounts/bin/answer.py?hl=en&answer=1066447' target='_blank'>google-authentication app </a></span>
-					<span id="GA_dialog_body"></span>
+				<label>
+					<input type="button"  class="button" value="ShowQR code" id="GA_show_qr" 	>
+				</label>
+				<div id=GA_QR_image>
+						<?php
+							if(@$value['GA_desc'] && @$value['GA_secret'] )
+								echo GoogleAuthenticationHelper::getQRcode($value['GA_desc'], $value['GA_secret']);
+						?>
 				</div>
+				
+<!--				<input type="hidden" size="25" value="" id="GA_params" name="<?php //echo $name?>[GA_params]['mode']"  title="Mode" />-->
+
+<!--				<div id="GA_dialog" class="hide" title="QR Code" >-->
+<!--					<span id="GA_dialog_header">Please scan this QR/bar Code from your <a href='http://support.google.com/accounts/bin/answer.py?hl=en&answer=1066447' target='_blank'>google-authentication app </a></span>-->
+<!--					<span id="GA_dialog_body"></span>-->
+<!--				</div>-->
 			</fieldset>
 		
 		<?php

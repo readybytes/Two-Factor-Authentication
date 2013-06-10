@@ -122,11 +122,7 @@ class plgSystem2way_Verification extends JPlugin
 	    $desc = $input->get('GA_desc');
 	    $key  = $input->get('GA_secret');
 	    
-	    // Create URL for the Google charts QR code generator.
-		$chl = urlencode( "otpauth://totp/{$desc}?secret={$key}" );
-		$qrcodeurl = "https://chart.googleapis.com/chart?cht=qr&amp;chs=300x300&amp;chld=H|0&amp;chl={$chl}";
-	    
-		return  "<img id=\"GA_QRCODE\"  src=\"{$qrcodeurl}\" alt=\"QR Code\"/>";
+	    return GoogleAuthenticationHelper::getQRcode($desc, $key);
 	}
 
 }

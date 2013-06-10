@@ -8,98 +8,9 @@ class GoogleAuthenticationHelper
 	 */
 	static function loadJQuery() {
 		static $required; 
-		if($required) {
-			return ;
-		}
-		self::loadCSS();
+		if($required) {	return ;	}
 		$required = true;
-		JFactory::getDocument()->addScript("//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js");
-		JFactory::getDocument()->addScript("//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js");
-		
-	}
-	
-	static public function loadCSS() {
-		
-		
-		ob_start();
-		?>
-		
-	.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
-    border-bottom-right-radius: 4px;
-}
-.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
-    border-bottom-left-radius: 4px;
-}
-.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
-    border-top-right-radius: 4px;
-}
-.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
-    border-top-left-radius: 4px;
-}
-.ui-widget-content {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background-attachment: scroll;
-    background-clip: border-box;
-    background-color: #FFFFFF;
-    background-image: url("images/ui-bg_flat_75_ffffff_40x100.png");
-    background-origin: padding-box;
-    background-position: 50% 50%;
-    background-repeat: repeat-x;
-    background-size: auto auto;
-    border-bottom-color: #AAAAAA;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-image-outset: 0 0 0 0;
-    border-image-repeat: stretch stretch;
-    border-image-slice: 100% 100% 100% 100%;
-    border-image-source: none;
-    border-image-width: 1 1 1 1;
-    border-left-color-ltr-source: physical;
-    border-left-color-rtl-source: physical;
-    border-left-color-value: #AAAAAA;
-    border-left-style-ltr-source: physical;
-    border-left-style-rtl-source: physical;
-    border-left-style-value: solid;
-    border-left-width-ltr-source: physical;
-    border-left-width-rtl-source: physical;
-    border-left-width-value: 1px;
-    border-right-color-ltr-source: physical;
-    border-right-color-rtl-source: physical;
-    border-right-color-value: #AAAAAA;
-    border-right-style-ltr-source: physical;
-    border-right-style-rtl-source: physical;
-    border-right-style-value: solid;
-    border-right-width-ltr-source: physical;
-    border-right-width-rtl-source: physical;
-    border-right-width-value: 1px;
-    border-top-color: #AAAAAA;
-    border-top-style: solid;
-    border-top-width: 1px;
-    color: #222222;
-}
-.ui-widget {
-    font-family: Verdana,Arial,sans-serif;
-    font-size: 1.1em;
-}
-.ui-dialog {
-    outline-color: -moz-use-text-color;
-    outline-style: none;
-    outline-width: 0;
-    padding-bottom: 0.2em;
-    padding-left: 0.2em;
-    padding-right: 0.2em;
-    padding-top: 0.2em;
-}
-.ui-front {
-    z-index: 100;
-}
-<?php 
-		$style	=	ob_get_contents();
-		ob_end_clean();
-		JFactory::getDocument()->addStyleDeclaration($style);
+		JFactory::getDocument()->addScript("//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js");		
 	}
 	
 	/**
@@ -163,8 +74,7 @@ class GoogleAuthenticationHelper
 			        				'GA_secret'	: GA_secret
 			        			},
 			        			function(response_text) {
-			        				$("#GA_dialog_body").html(response_text);
-			        				$("#GA_dialog").dialog();
+			        				$("#GA_QR_image").html(response_text);
 			        			}
 			        		);
 			        event.preventDefault();
@@ -190,36 +100,14 @@ class GoogleAuthenticationHelper
 	}
 	
 	
-	static function X_addField() {
-		self::loadJQuery();
-		ob_start();
-		?>
-				jQuery( document ).ready(function($) {
-					alert('manish');			    
-				});
-		
-		<?php 
-		$script	=	ob_get_contents();
-		ob_end_clean();
-		JFactory::getDocument()->addScriptDeclaration($script);
-		
+	static public function getQRcode($desc, $key ) 
+	{
+			// Create URL for the Google charts QR code generator.
+		$chl = urlencode( "otpauth://totp/{$desc}?secret={$key}" );
+		$qrcodeurl = "https://chart.googleapis.com/chart?cht=qr&amp;chs=200x200&amp;chld=H|0&amp;chl={$chl}";
+	    
+		return  "<img width='200' height='200' id=\"GA_QRCODE\"  src=\"{$qrcodeurl}\" alt=\"QR Code\"/>";	
 	}
-	
-	static function XX_addField() {	
-		?>
-		
-			<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
-			</script>
-			<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js" ></script>
-			<script>
-				jQuery( document ).ready(function($) {
 
-					$('#lang').after('<label id="mod-login-2way-lbl" for="mod-login-2way">Two-Way</label><input name="2way" id="mod-login-2way" type="text" class="inputbox" size="15">');		    
-				});
-			</script>
-		
-		<?php 
-	
-	}
 
 }

@@ -11,7 +11,7 @@
 	<description> 
 			&lt;u&gt; How to configure it :&lt;/u&gt; &lt;br /&gt;
 				&lt;ol&gt;
-					&lt;li&gt;&lt;span style="color:red"&gt;STEP-1#&lt;/span&gt;Plugin should be enabled.(Status Enable->Save) &lt;/li&gt;
+					&lt;li&gt;&lt;span style="color:red"&gt;STEP-1#&lt;/span&gt; Plugin should be enabled.(Status Enable->Save) &lt;/li&gt;
 					&lt;li&gt;&lt;span style="color:red"&gt;STEP-2#&lt;/span&gt; Configure "Two-Way Verification" &lt;/li&gt;
 					&lt;li&gt;&lt;span style="color:red"&gt;STEP-3#&lt;/span&gt; Activate&lt;/li&gt;
 				&lt;/ol&gt;
