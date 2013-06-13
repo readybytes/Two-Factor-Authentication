@@ -13,7 +13,7 @@
 				&lt;ol&gt;
 					&lt;li&gt;&lt;span style="color:red"&gt;STEP-1#&lt;/span&gt; Enable Plugin.(Status Enable->Save) &lt;/li&gt;
 					&lt;li&gt;&lt;span style="color:red"&gt;STEP-2#&lt;/span&gt; Configure "Two-Way Authenticator" &lt;/li&gt;
-					&lt;li&gt;&lt;span style="color:red"&gt;STEP-3#&lt;/span&gt; Setup an account in &lt;a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en"&gt;Googe Authentication Mobile app.&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;span style="color:red"&gt;STEP-3#&lt;/span&gt; Setup an account in &lt;a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en"&gt;Googe Authentication Mobile app.&lt;/a&gt;&lt;/li&gt;
 					&lt;li&gt;&lt;span style="color:red"&gt;STEP-4#&lt;/span&gt; To setup - Scan QR code/Enter Key in Google Authentication Mobile app&lt;/li&gt;
 					&lt;li&gt;&lt;span style="color:red"&gt;STEP-5#&lt;/span&gt; Set Activate to Yes&lt;/li&gt;
 				&lt;/ol&gt;
