@@ -11,11 +11,13 @@
 	<description> 
 			&lt;u&gt; How to configure it :&lt;/u&gt; &lt;br /&gt;
 				&lt;ol&gt;
-					&lt;li&gt;&lt;span style="color:red"&gt;STEP-1#&lt;/span&gt; Plugin should be enabled.(Status Enable->Save) &lt;/li&gt;
-					&lt;li&gt;&lt;span style="color:red"&gt;STEP-2#&lt;/span&gt; Configure "Two-Way Verification" &lt;/li&gt;
-					&lt;li&gt;&lt;span style="color:red"&gt;STEP-3#&lt;/span&gt; Activate&lt;/li&gt;
+					&lt;li&gt;&lt;span style="color:red"&gt;STEP-1#&lt;/span&gt; Enable Plugin.(Status Enable->Save) &lt;/li&gt;
+					&lt;li&gt;&lt;span style="color:red"&gt;STEP-2#&lt;/span&gt; Configure "Two-Way Authenticator" &lt;/li&gt;
+					&lt;li&gt;&lt;span style="color:red"&gt;STEP-2#&lt;/span&gt; Setup an account in Googe Authentication Mobile app.&lt;/li&gt;
+					&lt;li&gt;&lt;span style="color:red"&gt;STEP-3#&lt;/span&gt; To setup - Scan barcode code/Enter Key in Google Authentication Mobile app&lt;/li&gt;
+					&lt;li&gt;&lt;span style="color:red"&gt;STEP-3#&lt;/span&gt; Set Activate to Yes&lt;/li&gt;
 				&lt;/ol&gt;
-			&lt;strong&gt; WARNING : &lt;/strong&gt; &lt;span style="color:red"&gt;Be sure before enabling this plugin,you have properly done system configuration and then scan QR code from your google authentication app.&lt;/span&gt;
+			&lt;strong&gt; WARNING : &lt;/strong&gt; &lt;span style="color:red"&gt;NOTE - After configurating Two-Way Authenticator make sure that you have scanned barcode or enter key provided in your google authentication app. Otherwise After activation, you need to disable it from database.&lt;/span&gt;
 				
 				
 	</description>
@@ -37,7 +39,7 @@
 				<fieldset 
 					name="basic" 
 					addfieldpath="/plugins/system/2way_verification/profiles"
-					label="System-Configuration"
+					label="Configuration"
 				>	
 					<field
 						name="secret_key"
