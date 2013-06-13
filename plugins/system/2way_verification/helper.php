@@ -32,13 +32,13 @@ class GoogleAuthenticationHelper
 				var GA_secret = jQuery('#GA_secret').val();
 				    	
 		    	if(!GA_desc) {
-		    		alert('Description-field is empty ');
+		    		alert('Account name-field is empty ');
 		    		jQuery('#GA_desc').focus();
 		    		return false;
 		    	}
 		    	
 		    	if(!GA_secret ) {
-					alert('Please generate Secret-key ');
+					alert('Please generate key ');
 		    		jQuery('#GA_secret').focus();
 		    		return false;
 		    	}
