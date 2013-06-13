@@ -21,9 +21,9 @@ class JFormFieldSecret_Key extends JFormFieldList
 		ob_start();
 		?>
 			<fieldset id="google_authentication_setup" class="">				
-				<label class="">Description</label>
+				<label class="">Account name</label>
 					<input type="text" size="25" id="GA_desc" name="<?php echo $name?>[GA_desc]"  value="<?php echo @$value['GA_desc'];?>"  title="Description that you'll see in the Google Authenticator app on your phone." />
-				<label class="">Secret-Key</label>
+				<label class="">Key</label>
 					<input type="text" size="25" id="GA_secret" name="<?php echo $name?>[GA_secret]"  value="<?php echo @$value['GA_secret']; ?>"  />
 				
 				<input type="button" class="button" value="Create new secret" id="GA_newsecret" >
