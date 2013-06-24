@@ -51,7 +51,7 @@
 					<field
 						name="is_enable"
 						type="radio"
-						Title="Enable it after configure"
+						description="Enable it after configure"
 						label="Activate"	
 						defaul="0"
 						id='is_enable'		
@@ -60,6 +60,21 @@
 						<option value='1'>Yes</option>
 					</field>
 				</fieldset>
+				
+				<fieldset 
+					name="Advance" 
+					addfieldpath="/plugins/system/2way_verification/profiles"
+					label="Backup Utility"
+				>	
+					<field
+						name="backup"
+						type="backup"
+						id="backup"
+						label=""
+						description=""				
+						/>
+				</fieldset>
+				
 			</fields>
 	</config>
 </extension>

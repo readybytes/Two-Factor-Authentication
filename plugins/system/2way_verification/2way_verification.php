@@ -91,17 +91,26 @@ class plgSystem2way_Verification extends JPlugin
 	{
 		$key = JFactory::getApplication()->input->get('2way');
 		$secretkey = $this->params->get('secret_key')->GA_secret;
-		
+		$backup = $this->params->get('backup');
 		$g = new GoogleAuthenticator();
 		
 		$this->verified = (boolean)$g->checkCode($secretkey, $key);
+		
+		if(!$this->verified  && $backup->code == $key) {
+			$this->verified = true;
+			// If you have set count 1 it means backup code use only one time so shoubld be regenerated new backup key.				
+			if($backup->count) {
+				$newParams = unserialize(serialize($this->params));
+				$newParams->get('backup')->code = GoogleAuthenticationHelper::backupCode();
+				GoogleAuthenticationHelper::updatepluginParams($newParams);
+			}
+		}
 		
 		$session = JFactory::getSession();
 		$user = $session->get('user') ;
 		$user->twoway_verification = $this->verified;
 		$session->set('user',$user);
 		$redirect_url = JFactory::getApplication()->input->get('redirect','index.php');
-		
 		JFactory::getApplication()->redirect($redirect_url);
 	}
 	
@@ -123,6 +132,29 @@ class plgSystem2way_Verification extends JPlugin
 	    $key  = $input->get('GA_secret');
 	    
 	    return GoogleAuthenticationHelper::getQRcode($desc, $key);
+	}
+	
+
+	/**
+	 * Send backup code to login user email id
+	 */
+	function recovery() {
+		$user = JFactory::getUser();
+		$email = $user->email;
+		$backupCode = $this->params->get('backup')->code;
+		$config = JFactory::getConfig();
+		
+		$from 		= $config->sitename;
+		$fromname	= $config->sitename;
+		$recipient	= $email;
+		$subject 	= "$config->sitename Backup Code";
+		$body		= "Hello,{$user->name} <br /> Your backup code is $backupCode.";
+		
+		$msg = "System Email Fail To : $email";
+		if(true == JUtility::sendMail($from, $fromname, $recipient, $subject, $body, true)) {
+			$msg = "System mail sent to '$email'";
+		}
+		JFactory::getApplication()->redirect('index.php', $msg);
 	}
 
 }

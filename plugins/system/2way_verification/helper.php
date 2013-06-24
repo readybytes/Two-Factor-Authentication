@@ -19,18 +19,23 @@ class GoogleAuthenticationHelper
 		JFactory::getDocument()->addScript("//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js");		
 	}
 	
+	static function isPluginEnable() {
+		return JPluginHelper::isEnabled('system','2way_verification');
+	}
+	
 	/**
 	 * Load havascript for ajax
 	 */
 	static function loadJS() {
+		$isEnable = self::isPluginEnable();
 		ob_start();
 		?>
 		
 			function check_configuration()
 			{
-				var GA_desc = jQuery('#GA_desc').val();
-				var GA_secret = jQuery('#GA_secret').val();
-				    	
+				var GA_desc 	= jQuery('#GA_desc').val();
+				var GA_secret 	= jQuery('#GA_secret').val();
+				
 		    	if(!GA_desc) {
 		    		alert('Account name-field is empty ');
 		    		jQuery('#GA_desc').focus();
@@ -45,14 +50,17 @@ class GoogleAuthenticationHelper
 			 	return true;
 			}
 			
-			
-			
 			jQuery( document ).ready(function($) {
 			
-			
 				var loadUrl = 'index.php?plugin=2way_verification';
-				
 			    jQuery( '#GA_newsecret' ).click(function( event ) {
+			    
+				    var isEnable 	= <?php echo (int)$isEnable;?>;
+					if(!isEnable) {
+						alert('you should need to first enable this plugin and save it. See Available steps in Description.');
+						return false;
+					}
+						
 			        jQuery.get(
 			        			loadUrl,
 			        			{'method':'getsecretkey'},
@@ -94,6 +102,12 @@ class GoogleAuthenticationHelper
 			    		jQuery("#jform_params_is_enable0").attr('checked', 'checked');
 			    		return false;
 			    	}
+			    	
+			    	var confirmation =confirm("Make Sure, You have scan bar code or feed account name and key into your authetication app!");
+			    	if (confirmation == false) {
+						//jQuery("#jform_params_is_enable0").attr('checked', 'checked');
+			    		return false;
+					}
 			    });
 			    
 			});
@@ -113,6 +127,28 @@ class GoogleAuthenticationHelper
 		$qrcodeurl = "https://chart.googleapis.com/chart?cht=qr&amp;chs=200x200&amp;chld=H|0&amp;chl={$chl}";
 	    
 		return  "<img width='200' height='200' id=\"GA_QRCODE\"  src=\"{$qrcodeurl}\" alt=\"QR Code\"/>";	
+	}
+	
+	// @return 6 digit backup key	
+	static public function backupCode() {
+		return mt_rand(100000, 999999);
+	}
+	
+	/**
+	 * 
+	 * Update plugin params
+	 * @param should b JRegistry object
+	 */
+	static function updatepluginParams($params)
+	{ 
+		// convert JSON strin
+		$params = $params->toString();
+		$query = " 
+					UPDATE #__extensions SET `params` = '$params'
+					WHERE `element` = '2way_verification' AND `type` = 'plugin' AND `folder` ='system' 
+				  ";
+		
+		return (bool)JFactory::getDbo()->setQuery($query)->query();
 	}
 
 

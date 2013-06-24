@@ -8,7 +8,7 @@ defined('JPATH_BASE') or die;
 
 require_once JPATH_PLUGINS.'/system/2way_verification/helper.php';
 
-class JFormFieldSecret_Key extends JFormFieldList
+class JFormFieldSecret_Key extends JFormField
 {
 	protected function getInput()
 	{
@@ -47,7 +47,7 @@ class JFormFieldSecret_Key extends JFormFieldList
 		
 		<?php
 		$html = ob_get_contents();
-		ob_clean();
+		ob_end_clean();
 		return $html;
 	}
 }
