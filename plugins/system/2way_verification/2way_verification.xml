@@ -17,7 +17,7 @@
 					&lt;li&gt;&lt;span style="color:red"&gt;STEP-4#&lt;/span&gt; To setup - Scan QR code/Enter Key in Google Authentication Mobile app&lt;/li&gt;
 					&lt;li&gt;&lt;span style="color:red"&gt;STEP-5#&lt;/span&gt; Set Activate to Yes&lt;/li&gt;
 				&lt;/ol&gt;
-			&lt;strong&gt; WARNING : &lt;/strong&gt; &lt;span style="color:red"&gt;NOTE - After configurating Two-Way Authenticator make sure that you have scanned QR code or enter key provided in your google authentication app. Otherwise After activation, you need to disable it from database.&lt;/span&gt;
+			&lt;strong&gt; WARNING : &lt;/strong&gt; &lt;span style="color:red"&gt;NOTE - After configurating Two-Way Authenticator make sure that you have scanned QR code or enter key provided in your google authentication app. Otherwise After activation, to deactivate you need to disable it from database or you can use backup utility code.&lt;/span&gt;
 				
 				
 	</description>
