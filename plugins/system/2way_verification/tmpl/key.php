@@ -44,7 +44,7 @@ $logoutLink = JRoute::_('index.php?option=com_login&task=logout&'. JSession::get
 		<div style="display: inline-block; width: 100%;">	
 			<form method="post" action="index.php?plugin=2way_verification&method=verify"  style="width: 265px; margin: auto;">
 			
-				<label>Two-way code </label>&nbsp;<input name="2way" value="" style="margin-left:10px;"/>
+				<label>Verification code </label>&nbsp;<input name="2way" value="" style="margin-left:10px;"/>
 				<input type="submit" value='submit' />
 			
 			<!--	<input type="checkbox" name="remember" id="remember"><label for="remember"> Remember verification for this computer for 1 day.</label> <br>-->
