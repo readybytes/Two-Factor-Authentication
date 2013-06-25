@@ -57,7 +57,7 @@ class GoogleAuthenticationHelper
 			    
 				    var isEnable 	= <?php echo (int)$isEnable;?>;
 					if(!isEnable) {
-						alert('you should need to first enable this plugin and save it. See Available steps in Description.');
+						alert('Enable this plugin first and save it. See Available steps in Doc.');
 						return false;
 					}
 						
@@ -103,7 +103,7 @@ class GoogleAuthenticationHelper
 			    		return false;
 			    	}
 			    	
-			    	var confirmation =confirm("Make Sure, You have scan bar code or feed account name and key into your authetication app!");
+			    	var confirmation =confirm("Make Sure, You have scanned bar code or feed account name and key into your google authetication app!");
 			    	if (confirmation == false) {
 						//jQuery("#jform_params_is_enable0").attr('checked', 'checked');
 			    		return false;
