@@ -151,7 +151,14 @@ class plgSystem2way_Verification extends JPlugin
 		$body		= "Hello {$user->name}, <br />You have requested for backup code. Your backup code is $backupCode. Now you can enter this code as verification code.";
 		
 		$msg = "System Email Fail To : $email";
-		if(true == JUtility::sendMail($from, $fromname, $recipient, $subject, $body, true)) {
+		$jversion = new JVersion;
+		$release = str_replace('.', '', $jversion->RELEASE);
+		if($release >= 30) {
+			$mail = new JMail();
+			if(true == $mail->sendMail($from, $fromName, $recipient, $subject, $body, true)){
+				$msg = "Backup code sent";
+			}
+		}else if(true == JUtility::sendMail($from, $fromname, $recipient, $subject, $body, true)) {
 			$msg = "Backup code sent";
 		}
 		JFactory::getApplication()->redirect('index.php', $msg);

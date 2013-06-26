@@ -50,18 +50,26 @@ class GoogleAuthenticationHelper
 			 	return true;
 			}
 			
+			function isPluginEnable() 
+			{ 
+				var isEnable 	= <?php echo (int)$isEnable;?>;
+				if(!isEnable) {
+					alert('Enable this plugin first and save it. See Available steps in Doc.');
+					return false;
+				}
+				return true;
+			}
+			
 			jQuery( document ).ready(function($) {
 			
 				var loadUrl = 'index.php?plugin=2way_verification';
 			    jQuery( '#GA_newsecret' ).click(function( event ) {
 			    
-				    var isEnable 	= <?php echo (int)$isEnable;?>;
-					if(!isEnable) {
-						alert('Enable this plugin first and save it. See Available steps in Doc.');
-						return false;
-					}
-						
-			        jQuery.get(
+			    if(false == isPluginEnable() ){
+			    		return false;
+			    }
+				
+				   jQuery.get(
 			        			loadUrl,
 			        			{'method':'getsecretkey'},
 			        			function(response_text) {
@@ -76,7 +84,7 @@ class GoogleAuthenticationHelper
 			    	var GA_desc = jQuery('#GA_desc').val();
 			    	var GA_secret = jQuery('#GA_secret').val();
 			    	
-			    	if(false == check_configuration()){
+			    	if(false == check_configuration() || false == isPluginEnable() ){
 			    		return false;
 			    	}
 			    					    
