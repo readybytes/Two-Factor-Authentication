@@ -54,7 +54,7 @@ class GoogleAuthenticationHelper
 			{ 
 				var isEnable 	= <?php echo (int)$isEnable;?>;
 				if(!isEnable) {
-					alert('Enable this plugin first and save it. See Available steps in Doc.');
+					alert('Enable this plugin first and save it. See Available steps in Description or Doc.');
 					return false;
 				}
 				return true;
