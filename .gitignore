@@ -1,0 +1,37 @@
+
+############################# Ignore Other Joomla content
+administrator
+cache
+components
+media
+includes
+language
+tmp
+cli
+configuration.php
+images
+libraries
+logs
+modules
+templates
+web.config.txt
+LICENSE.txt
+robots.txt
+htaccess.txt
+build.xml
+index.php
+README.txt
+.*
+################################# 
+
+############# Include only Two way Verification dir
+!plugins/
+plugins/*
+
+!plugins/system/
+plugins/system/*
+
+!plugins/system/2way_verification/
+
+############ Include git ignore file
+!.gitignore
