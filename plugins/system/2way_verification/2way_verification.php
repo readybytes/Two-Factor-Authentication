@@ -111,8 +111,12 @@ class plgSystem2way_Verification extends JPlugin
 		$user = $session->get('user') ;
 		$user->twoway_verification = $this->verified;
 		$session->set('user',$user);
+		$msg = '';
+		if (!$this->verified) {
+			$msg = "Authentication Failed.";
+		}
 		$redirect_url = JFactory::getApplication()->input->get('redirect','index.php');
-		JFactory::getApplication()->redirect($redirect_url);
+		JFactory::getApplication()->redirect($redirect_url, $msg);
 	}
 	
 	/**
