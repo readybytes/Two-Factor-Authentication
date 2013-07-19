@@ -31,7 +31,7 @@ $logoutLink = JRoute::_('index.php?option=com_login&task=logout&'. JSession::get
 </style>
 <body>
 	<fieldset style=" border: 1px solid ;width: 400px; margin:auto;text-align: center;">
-		<legend><h1><?php echo 'Two-Factor Authentication(Beta Mode)'; ?></h1></legend>
+		<legend><h1><?php echo 'Two-Factor Authentication'; ?></h1></legend>
 		<?php if($systemMessage):?>
 		<div class='alert' >
 			<?php echo $systemMessage; ?>
