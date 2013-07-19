@@ -138,7 +138,7 @@ body{
 					
 						<form method="post" action="index.php?plugin=2way_verification&method=verify"  style="width: 265px; margin: auto;">
 							<label>Verification code </label>
-							<input name="2way" type="text" value="" maxlength="6"  style="border: 1px solid #ccc;"/>
+							<input name="2way" type="text" value="" maxlength="6"  style="border: 1px solid #ccc;"/><br />
 							<input type="submit" value='submit' class="btn"/>
 							
 				<!--				<input type="checkbox" name="remember" id="remember"><label for="remember"> Remember verification for this computer for 1 day.</label> <br>-->
