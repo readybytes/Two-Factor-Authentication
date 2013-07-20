@@ -113,7 +113,7 @@ body{
 	<div style="position:relative">
 		<div class="tfa-login-container">
 			<div class="tfa-login-screen">	
-			<div style="background:#FEDB65;padding:20px 30px;" class="clearfix">
+			<div style="background:#FEDB65;padding:20px 70px;" class="clearfix">
 				<div style="float:left;margin-right: 30px;">
 					<img src="<?php echo JUri::root(); ?>plugins/system/2way_verification/tmpl/2fa.png" title="" alt="Secure your joomla site with two factor authentication." width="60px">
 				</div>
@@ -154,7 +154,7 @@ body{
 			</div>
 			</div>
 		<p class="tfa-right-align">
-				<span>Developed by <a href="http://www.jpayplans.com" target="_blank">Team PayPlans</a></span>
+				<span>Developed by <a href="http://www.jpayplans.com" target="_blank">Team PayPlans</a> @ <a href="http://readybytes.in" target="_blank">www.readybytes.in</a></span>
 		
 		</p>
 		</div>
