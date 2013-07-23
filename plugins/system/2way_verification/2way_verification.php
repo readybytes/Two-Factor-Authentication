@@ -149,18 +149,28 @@ class plgSystem2way_Verification extends JPlugin
 		$backupCode = $this->params->get('backup')->code;
 		$config = JFactory::getConfig();
 		
-		$from 		= $config->sitename;
-		$fromname	= $config->sitename;
+		if ($config instanceof JRegistry) {
+			$from 		= $config->get('mailfrom');
+			$fromname	= $config->get('fromname');
+			$subject 	= "{$config->get('fromname')} Backup Code";
+		}
+		else { // Jconfig
+			$from 		= $config->sitename;
+			$fromname	= $config->sitename;
+			$subject 	= "$config->sitename Backup Code";
+		}
+		
 		$recipient	= $email;
-		$subject 	= "$config->sitename Backup Code";
 		$body		= "Hello {$user->name}, <br />You have requested for backup code. Your backup code is $backupCode. Now you can enter this code as verification code.";
 		
 		$msg = "System Email Fail To : $email";
 		$jversion = new JVersion;
 		$release = str_replace('.', '', $jversion->RELEASE);
 		if($release >= 30) {
-			$mail = new JMail();
-			if(true == $mail->sendMail($from, $fromName, $recipient, $subject, $body, true)){
+			$mail = JFactory::getMailer();
+			
+			$result = $mail->sendMail($from, $fromname, $recipient, $subject, $body, true);
+			if(true == $result ){
 				$msg = "Backup code sent";
 			}
 		}else if(true == JUtility::sendMail($from, $fromname, $recipient, $subject, $body, true)) {
