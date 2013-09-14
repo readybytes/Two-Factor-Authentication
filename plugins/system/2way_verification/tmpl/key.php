@@ -109,13 +109,20 @@ body{
 	padding-right: 8px;
 }
 </style>
+<?php 
+	$root = JURI::root();
+    // First we need to detect the URI scheme.
+	if (isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) != 'off')) {
+		$root = JString::str_ireplace("http:", "https:", $root);
+	}
+?>
 <body>
 	<div style="position:relative">
 		<div class="tfa-login-container">
 			<div class="tfa-login-screen">	
 			<div style="background:#FEDB65;padding:20px 70px;" class="clearfix">
 				<div style="float:left;margin-right: 30px;">
-					<img src="<?php echo JUri::root(); ?>plugins/system/2way_verification/tmpl/2fa.png" title="" alt="Secure your joomla site with two factor authentication." width="60px">
+					<img src="<?php echo $root; ?>plugins/system/2way_verification/tmpl/2fa.png" title="" alt="Secure your joomla site with two factor authentication." width="60px">
 				</div>
 				<div style="float:left">
 					<h2 style="font-weight: 500;font-size: 20px;">Two Factor Authentication</h2>
