@@ -66,10 +66,8 @@ class plgSystem2way_Verification extends JPlugin
 	
 	function onAfterRender()
 	{
-		if(		!($this->is_enable) ||
-				!isset($this->verified) || 
-				(isset($this->verified) && $this->verified)
-		  ) {
+		// not activated || for fronteand user || verified in backend
+		if (!($this->is_enable) ||	!isset($this->verified) || $this->verified ) {
 			return true;
 		}
 		
