@@ -122,7 +122,7 @@ body{
 			<div class="tfa-login-screen">	
 			<div style="background:#FEDB65;padding:20px 70px;" class="clearfix">
 				<div style="float:left;margin-right: 30px;">
-					<img src="<?php echo $root; ?>plugins/system/2way_verification/tmpl/2fa.png" title="" alt="Secure your joomla site with two factor authentication." width="60px">
+					<img src="<?php echo $root; ?>plugins/system/2way_verification/tmpl/TFA.png" title="" alt="Secure your joomla site with two factor authentication." width="60px">
 				</div>
 				<div style="float:left">
 					<h2 style="font-weight: 500;font-size: 20px;">Two Factor Authentication</h2>
@@ -143,9 +143,9 @@ body{
 					
 					<div style="width: 100%;"><br>
 					
-						<form method="post" action="index.php?plugin=2way_verification&method=verify"  style="width: 265px; margin: auto;">
+						<form method="post" action="index.php?plugin=TFA&method=verify"  style="width: 265px; margin: auto;">
 							<label>Verification code </label>
-							<input name="2way" type="text" value="" maxlength="6"  style="border: 1px solid #ccc;" autocomplete="off" /><br />
+							<input name="tfa_key" type="text" value="" maxlength="6"  style="border: 1px solid #ccc;" autocomplete="off" /><br />
 							<input type="submit" value='submit' class="btn"/>
 							
 				<!--				<input type="checkbox" name="remember" id="remember"><label for="remember"> Remember verification for this computer for 1 day.</label> <br>-->

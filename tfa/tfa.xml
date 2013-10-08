@@ -3,10 +3,9 @@
 	<name>Two Factor Authentication</name>
 	<author>Team ReadyBytes</author>
 	<creationDate>May 2013</creationDate>
-	<copyright>Copyright (C) 2012 - 2014 Open Source Matters. All rights reserved.</copyright>
+	<copyright>Copyright (C) 2013 - 2015 Open Source Matters. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<authorEmail>team@readybytes.in</authorEmail>
-	<authorUrl>www.joomlaxi.org</authorUrl>
+	<authorEmail>support+payplans@readybytes.in</authorEmail>
 	<scriptfile>install.script.php</scriptfile>
 	<version>0.1</version>
 	<description>   &lt;span style="color:green"&gt;Pre-requisite - Google Authentication Mobile app, Barcode scanner.&lt;/span&gt;&lt;/br&gt;
@@ -23,11 +22,12 @@
 				
 	</description>
 	<files>
-		<filename plugin="2way_verification">2way_verification.php</filename>
+		<filename plugin="tfa">tfa.php</filename>
 		<filename>helper.php</filename>
 		<filename>index.html</filename>
 		<filename>install.script.php</filename>
-		<folder>profiles</folder>
+		<folder>forms</folder>
+		<folder>fields</folder>
 		<folder>lib</folder>
 		<folder>tmpl</folder>
 	</files>
