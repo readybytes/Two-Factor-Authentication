@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');
 
-class plgSystem2way_verificationInstallerScript
+class plgSystemTFAInstallerScript
 {
 	/**
 	 * Called before any type of action
