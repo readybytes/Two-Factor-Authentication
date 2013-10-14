@@ -66,6 +66,28 @@ class plgSystemTFAInstallerScript
 		$html = ob_get_contents();
 		ob_end_clean();
 		echo $html;
+		
+		return $this->_addScript();
+	}
+
+	//Redirects to plugin after Installation
+	function _addScript()
+	{
+		$query 		 = " SELECT `extension_id` FROM `#__extensions` WHERE `element` = 'tfa' AND `folder` = 'system' ";
+		$extensionId = JFactory::getDbo()->setQuery($query)->loadResult();
+		
+		if (empty($extensionId)) {
+			return true;
+		}
+		$url 		 = 'index.php?option=com_plugins&view=plugin&task=plugin.edit&extension_id='.$extensionId;
+		
+		?>
+			<script type="text/javascript">
+				window.onload = function(){	
+				  setTimeout("location.href = '<?php echo$url;?>';", 100);
+				}
+			</script>
+		<?php
 	}
 
 }
