@@ -29,13 +29,45 @@ class plgSystemTFA extends JPlugin
 		// call Parent construstor
 		parent::__construct($subject, $config);
 		$this->_enable_for = JFactory::getUser()->get('id');
+
+		// check applicable area
+		$this->_checkApplicable();
+		
 		//if user logged-in den check activation nd verification
 		if($this->_enable_for) {
 			$this->_is_activated = $this->_isActivated();
 			$this->_is_varified	 = $this->_isVerified();
 		}
 	}
-	
+	/**
+	 * Check TFA applable for current area (admin, front or both) 
+	 * 
+	 */
+	private function _checkApplicable() 
+	{
+		$applicable = $this->params->get('applicable');
+		
+		// for bot end
+		if($applicable == 30) {
+			return true;
+		}
+		
+		$app = JFactory::getApplication();
+		
+		//applicable for front-end
+		if($applicable == 20 && $app->isSite()) {
+			return true;
+		}
+		
+		//Applicable for back-end
+		if($applicable == 10 && $app->isAdmin()) {
+			return true;
+		}
+		
+		// not applicable
+		$this->_enable_for = false;
+		return false;
+	}
 	
 	/**
 	 * @param   JForm    $form    The form to be altered.

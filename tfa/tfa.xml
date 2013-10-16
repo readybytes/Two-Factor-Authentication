@@ -37,46 +37,21 @@
 <!--	</languages>-->
 	<config>
 		<fields name="params">
-
 				<fieldset 
 					name="basic" 
-					addfieldpath="/plugins/system/2way_verification/profiles"
 					label="Configuration"
-				>	
+				>		
 					<field
-						name="secret_key"
-						type="secret_key"
-						id="secret_key"
-						label="Two-Way Authenticator"				
-						/>
-						
-					<field
-						name="is_enable"
-						type="radio"
-						description="Enable it after configure"
-						label="Activate"	
-						defaul="0"
-						id='is_enable'		
+						name="applicable"	type="radio"
+						description="TFA security available for specific area."		label="Applicable"	
+						default='10'
 						>
-						<option value='0'>No</option>
-						<option value='1'>Yes</option>
+						<option value='10'>Back-End</option>
+						<option value='20'>Front-end</option>
+						<option value='30'>Back-End + Front-end</option>
 					</field>
+					
 				</fieldset>
-				
-				<fieldset 
-					name="Advance" 
-					addfieldpath="/plugins/system/2way_verification/profiles"
-					label="Backup Utility"
-				>	
-					<field
-						name="backup"
-						type="backup"
-						id="backup"
-						label=""
-						description=""				
-						/>
-				</fieldset>
-				
 			</fields>
 	</config>
 </extension>
