@@ -123,7 +123,7 @@ body{
 			<div class="tfa-login-screen">	
 			<div style="background:#FEDB65;padding:20px 70px;" class="clearfix">
 				<div style="float:left;margin-right: 30px;">
-					<img src="<?php echo $root; ?>plugins/system/2way_verification/tmpl/TFA.png" title="" alt="Secure your joomla site with two factor authentication." width="60px">
+					<img src="<?php echo $root; ?>plugins/system/tfa/tmpl/tfa.png" title="" alt="Secure your joomla site with two factor authentication." width="60px">
 				</div>
 				<div style="float:left">
 					<h2 style="font-weight: 500;font-size: 20px;">Two Factor Authentication</h2>
@@ -155,8 +155,7 @@ body{
 					</div>
 					
 					<p>
-						If you are unable to login then please disable Two-Factor authentication plugin from your site database. 
-						OR Get <a href='index.php?plugin=tfa&method=recovery'>Backup-Code</a> at your email id 
+						If you are unable to login then get <a href='index.php?plugin=tfa&method=recovery'>Backup-Code</a> at your email id 
 					</p>
 				
 			</div>

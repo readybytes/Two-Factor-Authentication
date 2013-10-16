@@ -37,6 +37,8 @@ class plgSystemTFA extends JPlugin
 		if($this->_enable_for) {
 			$this->_is_activated = $this->_isActivated();
 			$this->_is_varified	 = $this->_isVerified();
+			// load language file
+			$this->loadLanguage();
 		}
 	}
 	/**

@@ -31,10 +31,12 @@
 		<folder>lib</folder>
 		<folder>tmpl</folder>
 	</files>
-<!--	<languages>-->
-<!--		<language tag="en-GB">en-GB.plg_system_2way_verification.ini</language>-->
+	
+	<languages>
+		<language tag="en-GB">languages/en-GB.plg_system_tfa.ini</language>
 <!--		<language tag="en-GB">en-GB.plg_system_2way_verification.sys.ini</language>-->
-<!--	</languages>-->
+	</languages>
+	
 	<config>
 		<fields name="params">
 				<fieldset 
