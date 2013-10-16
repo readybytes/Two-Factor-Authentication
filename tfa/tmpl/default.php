@@ -20,7 +20,8 @@ if(is_array($msg)) {
 }
 //JHtml::_('behavior.noframes');
 //$config = new JConfig();
-$logoutLink = JRoute::_('index.php?option=com_login&task=logout&'. JSession::getFormToken() .'=1');
+//$logoutLink = JRoute::_('index.php?option=com_login&task=logout&'. JSession::getFormToken() .'=1');
+$logoutLink = JRoute::_('index.php?option=com_users&task=user.logout&'. JSession::getFormToken() .'=1');
 ?>
 <style>
 body{
@@ -155,7 +156,7 @@ body{
 					
 					<p>
 						If you are unable to login then please disable Two-Factor authentication plugin from your site database. 
-						OR Get <a href='index.php?plugin=2way_verification&method=recovery'>Backup-Code</a> at your email id 
+						OR Get <a href='index.php?plugin=tfa&method=recovery'>Backup-Code</a> at your email id 
 					</p>
 				
 			</div>

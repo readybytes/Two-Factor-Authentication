@@ -5,7 +5,7 @@
 		<fieldset 
 			name="tfa"
 			label="PLG_TWO_FACTOR_AUTHENTICATION"
-			addfieldpath="/plugins/system/TFA/fields"
+			addfieldpath="/plugins/system/tfa/fields"
 		>
 		
 			<field
@@ -15,7 +15,7 @@
 				label="PLG_TFA_ACTIVATE_LABEL"	
 				defaul="0"
 				id='is_enable'
-				class="btn-group"
+				class=""
 			>
 				<option value="0">PLG_TFA_NO</option>
 				<option value="1">PLG_TFA_YES</option>
@@ -26,6 +26,13 @@
 				type="authentication"
 				id="authentication"
 				label="PLG_TFA_AUTHENTICATION"				
+			/>
+			
+			<field
+				name="backup"
+				type="backup"
+				id="backup"
+				label="PLG_TFA_BACKUP"				
 			/>
 					
 		</fieldset>
