@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="params">
+	<fields name="tfa">
+		<fieldset 
+			name="tfa"
+			label="PLG_TWO_FACTOR_AUTHENTICATION"
+			addfieldpath="/plugins/system/tfa/fields"
+		>
+		
+			<field
+				name="activate"
+				type="radio"
+				description="PLG_TFA_ACTIVATE_DESC"
+				label="PLG_TFA_ACTIVATE_LABEL"	
+				defaul="0"
+				id='is_enable'
+				class=""
+			>
+				<option value="0">PLG_TFA_NO</option>
+				<option value="1">PLG_TFA_YES</option>
+			</field>
+			
+			<field
+				name="authentication"
+				type="authentication"
+				id="authentication"
+				label="PLG_TFA_AUTHENTICATION"				
+			/>
+			
+			<field
+				name="backup"
+				type="backup"
+				id="backup"
+				label="PLG_TFA_BACKUP"				
+			/>
+					
+		</fieldset>
+	</fields>
+	</fields>
+</form>

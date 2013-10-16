@@ -29,13 +29,56 @@ class plgSystemTFA extends JPlugin
 		// call Parent construstor
 		parent::__construct($subject, $config);
 		$this->_enable_for = JFactory::getUser()->get('id');
+<<<<<<< HEAD
+=======
+
+		// check applicable area
+		$this->_checkApplicable();
+		
+>>>>>>> 36db9a7029c33d779f81ff4faa4a78ff57fcef9d
 		//if user logged-in den check activation nd verification
 		if($this->_enable_for) {
 			$this->_is_activated = $this->_isActivated();
 			$this->_is_varified	 = $this->_isVerified();
+<<<<<<< HEAD
 		}
 	}
 	
+=======
+			// load language file
+			$this->loadLanguage();
+		}
+	}
+	/**
+	 * Check TFA applable for current area (admin, front or both) 
+	 * 
+	 */
+	private function _checkApplicable() 
+	{
+		$applicable = $this->params->get('applicable');
+		
+		// for bot end
+		if($applicable == 30) {
+			return true;
+		}
+		
+		$app = JFactory::getApplication();
+		
+		//applicable for front-end
+		if($applicable == 20 && $app->isSite()) {
+			return true;
+		}
+		
+		//Applicable for back-end
+		if($applicable == 10 && $app->isAdmin()) {
+			return true;
+		}
+		
+		// not applicable
+		$this->_enable_for = false;
+		return false;
+	}
+>>>>>>> 36db9a7029c33d779f81ff4faa4a78ff57fcef9d
 	
 	/**
 	 * @param   JForm    $form    The form to be altered.
@@ -83,7 +126,11 @@ class plgSystemTFA extends JPlugin
 		$input = JFactory::getApplication()->input;
 		
 		// is it ajax req or not
+<<<<<<< HEAD
 		if('TFA' != $input->get('plugin', '')) {
+=======
+		if('tfa' != strtolower($input->get('plugin', false))) {
+>>>>>>> 36db9a7029c33d779f81ff4faa4a78ff57fcef9d
 			return true;
 		}
 		
@@ -168,6 +215,7 @@ class plgSystemTFA extends JPlugin
 		$app = JFactory::getApplication();
 		// get Submit tfa_key
 		$key = $app->input->get('tfa_key');
+<<<<<<< HEAD
 		// Get user tfa secret ket
 		$tfa = JFactory::getUser()->get('_params')->get('tfa');	
 		$secretkey = $tfa->authentication->secret;
@@ -175,6 +223,24 @@ class plgSystemTFA extends JPlugin
 		$g = new GoogleAuthenticator();
 		$this->_is_varified = (boolean)$g->checkCode($secretkey, $key);
 		
+=======
+		// Get user tfa secret key
+		$tfa = JFactory::getUser()->get('_params')->get('tfa');	
+		
+		// Check Verification from GoogleAuthenticator 
+		$secretkey = $tfa->authentication->secret;
+
+		$g = new GoogleAuthenticator();
+		$this->_is_varified = (boolean)$g->checkCode($secretkey, $key);
+		
+		// is backup utlity used
+		$backupCode = $tfa->backup->code; 
+		if(!$this->_is_varified && $backupCode && $key === $backupCode) {
+			$this->_is_varified = true;
+			$this->_changeCodeFrequency();
+		}
+		
+>>>>>>> 36db9a7029c33d779f81ff4faa4a78ff57fcef9d
 		// Set into session user verified or not
 		$session = JFactory::getSession();
 		$user = $session->get('user') ;
@@ -187,6 +253,7 @@ class plgSystemTFA extends JPlugin
 		$redirect_url = $app->input->get('redirect','index.php');
 		$app->redirect($redirect_url, $msg);
 	}
+<<<<<<< HEAD
 //	
 
 //	
@@ -221,6 +288,65 @@ class plgSystemTFA extends JPlugin
 //		}
 //		JFactory::getApplication()->redirect('index.php', $msg);
 //	}
+=======
+
+	/**
+	 * 
+	 * if backup code use for one time then change backup-code after used 
+	 */
+	private function _changeCodeFrequency() 
+	{
+		$user 	=	JFactory::getUser();  
+		$tfa	= 	$user->get('_params')->get('tfa');
+		
+		// if unlimited used
+		if(!$tfa->backup->count) {
+			return true;
+		}
+		
+		$tfa->backup->code = GoogleAuthenticationHelper::backupCode();
+		
+		// set new code
+		$user->setParam('tfa', $tfa);
+		
+		// save user with new backup code
+		$user->save();		
+	}
+	/**
+	 * Send backup code to login user email id
+	 */
+	function recovery() 
+	{
+		// get current user
+		$user = JFactory::getUser();
+		$email = $user->email;
+		$backupCode = JFactory::getUser()->get('_params')->get('tfa')->backup->code;
+		
+		$config = JFactory::getConfig();
+		
+		$from 		= $config->sitename;
+		$fromname	= $config->sitename;
+		$recipient	= $email;
+		$subject 	= "$config->sitename Backup Code";
+		//@TODO:: add to language string
+		$body		= "Hello {$user->name}, <br />You have requested for backup code. Your backup code is $backupCode. Now you can enter this code as verification code.";
+		
+		$msg = "System Email Fail To : $email";
+		
+		$jversion = new JVersion;
+		$release = str_replace('.', '', $jversion->RELEASE);
+		if($release >= 30) {
+			$mail = new JMail();
+			if(true == $mail->sendMail($from, $fromName, $recipient, $subject, $body, true)){
+				$msg = "Backup code sent";
+			}
+		}else if(true == JUtility::sendMail($from, $fromname, $recipient, $subject, $body, true)) {
+			$msg = "Backup code sent";
+		}
+		
+		JFactory::getApplication()->redirect('index.php', $msg);
+	}
+>>>>>>> 36db9a7029c33d779f81ff4faa4a78ff57fcef9d
 
 }
 

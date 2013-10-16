@@ -20,7 +20,8 @@ if(is_array($msg)) {
 }
 //JHtml::_('behavior.noframes');
 //$config = new JConfig();
-$logoutLink = JRoute::_('index.php?option=com_login&task=logout&'. JSession::getFormToken() .'=1');
+//$logoutLink = JRoute::_('index.php?option=com_login&task=logout&'. JSession::getFormToken() .'=1');
+$logoutLink = JRoute::_('index.php?option=com_users&task=user.logout&'. JSession::getFormToken() .'=1');
 ?>
 <style>
 body{
@@ -122,7 +123,11 @@ body{
 			<div class="tfa-login-screen">	
 			<div style="background:#FEDB65;padding:20px 70px;" class="clearfix">
 				<div style="float:left;margin-right: 30px;">
+<<<<<<< HEAD:tfa/tmpl/default.php
 					<img src="<?php echo $root; ?>plugins/system/2way_verification/tmpl/TFA.png" title="" alt="Secure your joomla site with two factor authentication." width="60px">
+=======
+					<img src="<?php echo $root; ?>plugins/system/tfa/tmpl/tfa.png" title="" alt="Secure your joomla site with two factor authentication." width="60px">
+>>>>>>> 36db9a7029c33d779f81ff4faa4a78ff57fcef9d:tfa/tmpl/default.php
 				</div>
 				<div style="float:left">
 					<h2 style="font-weight: 500;font-size: 20px;">Two Factor Authentication</h2>
@@ -154,8 +159,7 @@ body{
 					</div>
 					
 					<p>
-						If you are unable to login then please disable Two-Factor authentication plugin from your site database. 
-						OR Get <a href='index.php?plugin=2way_verification&method=recovery'>Backup-Code</a> at your email id 
+						If you are unable to login then get <a href='index.php?plugin=tfa&method=recovery'>Backup-Code</a> at your email id 
 					</p>
 				
 			</div>
