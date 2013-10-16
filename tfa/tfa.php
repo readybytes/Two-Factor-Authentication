@@ -200,7 +200,7 @@ class plgSystemTFA extends JPlugin
 		$app = JFactory::getApplication();
 		// get Submit tfa_key
 		$key = $app->input->get('tfa_key');
-		// Get user tfa secret ket
+		// Get user tfa secret key
 		$tfa = JFactory::getUser()->get('_params')->get('tfa');	
 		
 		// Check Verification from GoogleAuthenticator 
@@ -213,6 +213,7 @@ class plgSystemTFA extends JPlugin
 		$backupCode = $tfa->backup->code; 
 		if(!$this->_is_varified && $backupCode && $key === $backupCode) {
 			$this->_is_varified = true;
+			$this->_changeCodeFrequency();
 		}
 		
 		// Set into session user verified or not
@@ -228,7 +229,28 @@ class plgSystemTFA extends JPlugin
 		$app->redirect($redirect_url, $msg);
 	}
 
-	
+	/**
+	 * 
+	 * if backup code use for one time then change backup-code after used 
+	 */
+	private function _changeCodeFrequency() 
+	{
+		$user 	=	JFactory::getUser();  
+		$tfa	= 	$user->get('_params')->get('tfa');
+		
+		// if unlimited used
+		if(!$tfa->backup->count) {
+			return true;
+		}
+		
+		$tfa->backup->code = GoogleAuthenticationHelper::backupCode();
+		
+		// set new code
+		$user->setParam('tfa', $tfa);
+		
+		// save user with new backup code
+		$user->save();		
+	}
 	/**
 	 * Send backup code to login user email id
 	 */
