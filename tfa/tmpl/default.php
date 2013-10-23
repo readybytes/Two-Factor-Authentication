@@ -20,8 +20,11 @@ if(is_array($msg)) {
 }
 //JHtml::_('behavior.noframes');
 //$config = new JConfig();
-//$logoutLink = JRoute::_('index.php?option=com_login&task=logout&'. JSession::getFormToken() .'=1');
 $logoutLink = JRoute::_('index.php?option=com_users&task=user.logout&'. JSession::getFormToken() .'=1');
+if($app->isAdmin()){
+	$logoutLink = JRoute::_('index.php?option=com_login&task=logout&'. JSession::getFormToken() .'=1');
+}
+
 ?>
 <style>
 body{
