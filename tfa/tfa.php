@@ -280,7 +280,7 @@ class plgSystemTFA extends JPlugin
 		$jversion = new JVersion;
 		$release = str_replace('.', '', $jversion->RELEASE);
 		if($release >= 30) {
-			$mail = new JMail();
+			$mail= JFactory::getMailer();
 			if(true == $mail->sendMail($from, $fromName, $recipient, $subject, $body, true)){
 				$msg = "Backup code sent";
 			}

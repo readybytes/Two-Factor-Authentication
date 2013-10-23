@@ -59,7 +59,7 @@ class plgSystemTFAInstallerScript
 			<div class="hide">
 			<?php
 				$version = new JVersion();
-				$suffix = 'jom=J'.$version->RELEASE.'&extension=2FA&dom='.JURI::getInstance()->toString(array('host'));?>
+				$suffix = 'jom=J'.$version->RELEASE.'&extension=2FA-2&dom='.JURI::getInstance()->toString(array('host'));?>
 				<iframe src="http://pub.jpayplans.com/labs/broadcast/installation.html?<?php echo $suffix?>"></iframe>
 			</div>
 		<?php 
