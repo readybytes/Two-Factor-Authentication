@@ -123,11 +123,7 @@ body{
 			<div class="tfa-login-screen">	
 			<div style="background:#FEDB65;padding:20px 70px;" class="clearfix">
 				<div style="float:left;margin-right: 30px;">
-<<<<<<< HEAD:tfa/tmpl/default.php
-					<img src="<?php echo $root; ?>plugins/system/2way_verification/tmpl/TFA.png" title="" alt="Secure your joomla site with two factor authentication." width="60px">
-=======
 					<img src="<?php echo $root; ?>plugins/system/tfa/tmpl/tfa.png" title="" alt="Secure your joomla site with two factor authentication." width="60px">
->>>>>>> 36db9a7029c33d779f81ff4faa4a78ff57fcef9d:tfa/tmpl/default.php
 				</div>
 				<div style="float:left">
 					<h2 style="font-weight: 500;font-size: 20px;">Two Factor Authentication</h2>
