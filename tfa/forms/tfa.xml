@@ -13,12 +13,12 @@
 				type="radio"
 				description="PLG_TFA_ACTIVATE_DESC"
 				label="PLG_TFA_ACTIVATE_LABEL"	
-				defaul="0"
+				default="0"
 				id='is_enable'
 				class=""
 			>
-				<option value="0">PLG_TFA_NO</option>
-				<option value="1">PLG_TFA_YES</option>
+				<option value='0' > PLG_TFA_NO</option>
+				<option value='1' > PLG_TFA_YES</option>
 			</field>
 			
 			<field
