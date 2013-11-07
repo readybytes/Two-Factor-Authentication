@@ -101,7 +101,7 @@ class plgSystemTFA extends JPlugin
 		}
 
 		// Add the registration fields to the form.
-		JForm::addFormPath(__DIR__ . '/forms');
+		JForm::addFormPath(dirname(__FILE__). '/forms');
 		$form->loadFile('TFA', false);
 
 		return true;
