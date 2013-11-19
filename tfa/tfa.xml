@@ -53,6 +53,16 @@
 						<option value='30'>Back-End + Front-end</option>
 					</field>
 					
+					<field
+						name="backup_mail"	type="radio"
+						description="Its just utilize backup-utility. It will send backup-code to user email address. The emailed backup-code is not that secure, because it is not 'something that you have', as the two factor authentication stipulates.(Thanks to Julian)"		
+						label="Back-up On Mail"	
+						default='20'
+						>
+						<option value='10'>No need to send</option>
+						<option value='20'>Email Backup-Code to user</option>
+					</field>
+					
 				</fieldset>
 			</fields>
 	</config>
