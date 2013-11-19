@@ -156,10 +156,11 @@ body{
 							<input type="hidden" name="redirect" value='index.php'/>
 						</form><br/>
 					</div>
-					
-					<p>
-						If you are unable to login then get <a href='index.php?plugin=tfa&method=recovery'>Backup-Code</a> at your email id 
-					</p>
+					<?php if(20==$params->get('backup_mail',20)):?>
+						<p>
+							If you are unable to login then get <a href='index.php?plugin=tfa&method=recovery'>Backup-Code</a> at your email id 
+						</p>
+					<?php endif;?>
 				
 			</div>
 			</div>

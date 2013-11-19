@@ -158,7 +158,9 @@ class plgSystemTFA extends JPlugin
 			return true;
 		}
 		
-		$buffer      = JResponse::getBody();
+		$buffer     = JResponse::getBody();
+		// plugin param will be available in tmplt
+		$params 	= $this->params;
 		ob_start();
 			require_once 'tmpl/default.php';
 		$tfa_html = ob_get_contents();
