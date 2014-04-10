@@ -35,7 +35,7 @@
 	
 	<languages>
 		<language tag="en-GB">languages/en-GB.plg_system_tfa.ini</language>
-<!--		<language tag="en-GB">en-GB.plg_system_2way_verification.sys.ini</language>-->
+		<language tag="fr-FR">languages/fr-FR.plg_system_tfa.ini</language>
 	</languages>
 	
 	<config>
@@ -63,6 +63,13 @@
 						<option value='10'>No need to send</option>
 						<option value='20'>Email Backup-Code to user</option>
 					</field>
+					
+					<field
+                                            name="redirect"	type="text"  
+                                            description=""		
+                                            label="Redirect URL"
+                                            default="index.php"
+                                            />
 					
 				</fieldset>
 			</fields>
