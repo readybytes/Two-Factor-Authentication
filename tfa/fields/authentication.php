@@ -27,10 +27,10 @@ class JFormFieldAuthentication extends JFormField
 			<!-- Secret Key		-->
 			<label class=""><?php echo JText::_('PLG_TFA_SECRET_KEY');?></label>
 				<input type="text" size="25" id="tfa_secret" name="<?php echo $name?>[secret]"  value="<?php echo @$value['secret']; ?>" maxlength="16" readonly="true"/>
-				<input type="button" class="button" value="Create new secret" id="tfa_newsecret" >
+				<input type="button" class="button" value="<?php echo JText::_('PLG_TFA_CREATE_NEW_SECRET');?>" id="tfa_newsecret" >
 			<!-- Show QR image 	-->
 			<label>
-				<input type="button"  class="button" value="Show QR-Code" id="tfa_qr_get" 	/>
+				<input type="button"  class="button" value="<?php echo JText::_('PLG_TFA_SHOW_QR_CODE');?>" id="tfa_qr_get" 	/>
 			</label>
 			<!-- Render QR image	-->
 			<div id=tfa_qr_image>
