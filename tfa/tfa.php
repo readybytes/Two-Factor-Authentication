@@ -283,7 +283,7 @@ class plgSystemTFA extends JPlugin
 		$jversion = new JVersion;
 		$release = str_replace('.', '', $jversion->RELEASE);
 		if($release >= 30) {
-			$mail = new JMail();
+                        $mail= JFactory::getMailer();
 			if(true == $mail->sendMail($from, $fromName, $recipient, $subject, $body, true)){
 				$msg = JText::_("PLG_TFA_BACKUP_CODE_SENT");
 			}
