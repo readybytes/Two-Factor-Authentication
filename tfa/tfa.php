@@ -37,10 +37,13 @@ class plgSystemTFA extends JPlugin
 		if($this->_enable_for) {
 			$this->_is_activated = $this->_isActivated();
 			$this->_is_varified	 = $this->_isVerified();
-
 			// load language file
 			$this->loadLanguage();
 		}
+                
+                //Load language file
+                $lang = JFactory::getLanguage();
+                $lang->load('plg_system_tfa', JPATH_ADMINISTRATOR);
 	}
 	/**
 	 * Check TFA applable for current area (admin, front or both) 
@@ -98,9 +101,9 @@ class plgSystemTFA extends JPlugin
 		$name = $form->getName();
 		if (!in_array($name, array('com_admin.profile', 'com_users.user', 'com_users.profile')))
 		{
-			return true;
+			return true; 
 		}
-
+     
 		// Add the registration fields to the form.
 		JForm::addFormPath(dirname(__FILE__). '/forms');
 		$form->loadFile('TFA', false);
@@ -118,7 +121,6 @@ class plgSystemTFA extends JPlugin
 		$input = JFactory::getApplication()->input;
 		
 		// is it ajax req or not
-
 		if('tfa' != strtolower($input->get('plugin', false))) {
 			return true;
 		}
@@ -169,7 +171,7 @@ class plgSystemTFA extends JPlugin
 		//$buffer = preg_replace("%<body\s*\w*>([\w\W]*)</body>%i",$two_way_html, $buffer);
 		//$buffer = preg_replace('%<body id="minwidth-body">([\w\W]*)</body>%i',$two_way_html, $buffer);
 		$buffer = preg_replace('%<body.*>([\w\W]*)</body>%i', $tfa_html, $buffer);		
-		JResponse::setBody($buffer);
+	 JResponse::setBody($buffer);
 	}
 
 //	Check user is verified or not
@@ -206,7 +208,6 @@ class plgSystemTFA extends JPlugin
 		$app = JFactory::getApplication();
 		// get Submit tfa_key
 		$key = $app->input->get('tfa_key');
-
 		// Get user tfa secret key
 		$tfa = JFactory::getUser()->get('_params')->get('tfa');	
 		
@@ -273,21 +274,21 @@ class plgSystemTFA extends JPlugin
 		$from 		= $config->sitename;
 		$fromname	= $config->sitename;
 		$recipient	= $email;
-		$subject 	= "$config->sitename Backup Code";
+		$subject 	= JText::sprintf("PLG_TFA_RECOVERY_MAIL_SUBJECT", $config->sitename);
 		//@TODO:: add to language string
-		$body		= "Hello {$user->name}, <br />You have requested for backup code. Your backup code is $backupCode. Now you can enter this code as verification code.";
+		$body		= JText::sprintf("PLG_TFA_RECOVERY_MAIL_BODY", $user->name, $backupCode);
 		
-		$msg = "System Email Fail To : $email";
+		$msg = JText::sprintf("PLG_TFA_SYSTEM_EMAIL_FAIL_TO", $email);
 		
 		$jversion = new JVersion;
 		$release = str_replace('.', '', $jversion->RELEASE);
 		if($release >= 30) {
-			$mail= JFactory::getMailer();
+                        $mail= JFactory::getMailer();
 			if(true == $mail->sendMail($from, $fromName, $recipient, $subject, $body, true)){
-				$msg = "Backup code sent";
+				$msg = JText::_("PLG_TFA_BACKUP_CODE_SENT");
 			}
 		}else if(true == JUtility::sendMail($from, $fromname, $recipient, $subject, $body, true)) {
-			$msg = "Backup code sent";
+			$msg = JText::_("PLG_TFA_BACKUP_CODE_SENT");
 		}
 		
 		JFactory::getApplication()->redirect('index.php', $msg);

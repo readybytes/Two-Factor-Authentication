@@ -2,12 +2,12 @@
 <extension version="2.5" type="plugin" group="system" method="upgrade">
 	<name>Two Factor Authentication</name>
 	<author>Team ReadyBytes</author>
-	<creationDate>May 2013</creationDate>
+	<creationDate>April 2014</creationDate>
 	<copyright>Copyright (C) 2013 - 2015 Open Source Matters. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>support+payplans@readybytes.in</authorEmail>
 	<scriptfile>install.script.php</scriptfile>
-	<version>2.0</version>
+	<version>2.1</version>
 	<description>   &lt;span style="color:green"&gt;Pre-requisite - Google Authentication Mobile app, Barcode scanner.&lt;/span&gt;&lt;/br&gt;
 			&lt;u&gt; How to configure it :&lt;/u&gt; &lt;br /&gt;
 				&lt;ol&gt;
@@ -35,7 +35,8 @@
 	
 	<languages>
 		<language tag="en-GB">languages/en-GB.plg_system_tfa.ini</language>
-<!--		<language tag="en-GB">en-GB.plg_system_2way_verification.sys.ini</language>-->
+		<language tag="fr-FR">languages/fr-FR.plg_system_tfa.ini</language>
+                <language tag="it-IT">languages/fr-FR.plg_system_tfa.ini</language>
 	</languages>
 	
 	<config>
@@ -63,6 +64,13 @@
 						<option value='10'>No need to send</option>
 						<option value='20'>Email Backup-Code to user</option>
 					</field>
+					
+					<field
+                                            name="redirect"	type="text"  
+                                            description=""		
+                                            label="Redirect URL"
+                                            default="index.php"
+                                            />
 					
 				</fieldset>
 			</fields>
