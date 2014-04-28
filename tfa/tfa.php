@@ -37,6 +37,7 @@ class plgSystemTFA extends JPlugin
 		if($this->_enable_for) {
 			$this->_is_activated = $this->_isActivated();
 			$this->_is_varified	 = $this->_isVerified();
+
 			// load language file
 			$this->loadLanguage();
 		}
@@ -117,6 +118,7 @@ class plgSystemTFA extends JPlugin
 		$input = JFactory::getApplication()->input;
 		
 		// is it ajax req or not
+
 		if('tfa' != strtolower($input->get('plugin', false))) {
 			return true;
 		}
@@ -204,6 +206,7 @@ class plgSystemTFA extends JPlugin
 		$app = JFactory::getApplication();
 		// get Submit tfa_key
 		$key = $app->input->get('tfa_key');
+
 		// Get user tfa secret key
 		$tfa = JFactory::getUser()->get('_params')->get('tfa');	
 		
@@ -279,7 +282,7 @@ class plgSystemTFA extends JPlugin
 		$jversion = new JVersion;
 		$release = str_replace('.', '', $jversion->RELEASE);
 		if($release >= 30) {
-			$mail = new JMail();
+			$mail= JFactory::getMailer();
 			if(true == $mail->sendMail($from, $fromName, $recipient, $subject, $body, true)){
 				$msg = "Backup code sent";
 			}
