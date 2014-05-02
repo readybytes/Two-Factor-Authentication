@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright	Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @author		Manish Trivedi
  */
@@ -124,50 +124,51 @@ body{
 	<div style="position:relative">
 		<div class="tfa-login-container">
 			<div class="tfa-login-screen">	
-			<div style="background:#FEDB65;padding:20px 70px;" class="clearfix">
-				<div style="float:left;margin-right: 30px;">
-					<img src="<?php echo $root; ?>plugins/system/tfa/tmpl/tfa.png" title="" alt="Secure your joomla site with two factor authentication." width="60px">
-				</div>
-				<div style="float:left">
-					<h2 style="font-weight: 500;font-size: 20px;">Two Factor Authentication</h2>
-				</div>
-			</div>
-			
-			<div class="tfa-right-align" style="margin-top:10px;">
-				<a href="<?php echo $logoutLink; ?>">Logout</a>
-			</div>
-					
-			<div class="middle-text">
-					<?php if($systemMessage):?>
-					<div class='alert' >
-						<?php echo $systemMessage; ?>
+				<div style="background:#FEDB65;padding:20px 70px;" class="clearfix">
+					<div style="float:left;margin-right: 30px;">
+						<img src="<?php echo $root; ?>plugins/system/tfa/tmpl/tfa.png" title="" alt="Secure your joomla site with two factor authentication." width="60px">
 					</div>
-					<?php endif;?>
-					
-					
-					<div style="width: 100%;"><br>
-					
-						<form method="post" action="index.php?plugin=TFA&method=verify"  style="width: 265px; margin: auto;">
-							<label>Verification code </label>
-							<input name="tfa_key" type="text" value="" maxlength="6"  style="border: 1px solid #ccc;" autocomplete="off" /><br />
-							<input type="submit" value='submit' class="btn"/>
-							
-				<!--				<input type="checkbox" name="remember" id="remember"><label for="remember"> Remember verification for this computer for 1 day.</label> <br>-->
-							<input type="hidden" name="redirect" value='index.php'/>
-						</form><br/>
+					<div style="float:left">
+						<h2 style="font-weight: 500;font-size: 20px;"><?php echo JText::_("PLG_TWO_FACTOR_AUTHENTICATION") ?></h2>
 					</div>
-					<?php if(20==$params->get('backup_mail',20)):?>
-						<p>
-							If you are unable to login then get <a href='index.php?plugin=tfa&method=recovery'>Backup-Code</a> at your email id 
-						</p>
-					<?php endif;?>
+				</div>
 				
+				<div class="tfa-right-align" style="margin-top:10px;">
+					<a href="<?php echo $logoutLink; ?>"><?php echo JText::_("PLG_TFA_LOGOUT") ?></a>
+				</div>
+						
+				<div class="middle-text">
+						<?php if($systemMessage):?>
+						<div class='alert' >
+							<?php echo $systemMessage; ?>
+						</div>
+						<?php endif;?>
+						
+						
+						<div style="width: 100%;"><br>
+						
+							<form method="post" action="index.php?plugin=TFA&method=verify"  style="width: 265px; margin: auto;">
+								<label><?php echo JText::_("PLG_TFA_VERIFICATION_CODE") ?> </label>
+								<input name="tfa_key" type="text" value="" maxlength="6"  style="border: 1px solid #ccc;" autocomplete="off" /><br />
+								<input type="submit" value='submit' class="btn"/>
+								
+					<!--				<input type="checkbox" name="remember" id="remember"><label for="remember"> Remember verification for this computer for 1 day.</label> <br>-->
+								<input type="hidden" name="redirect" value='index.php'/>
+							</form><br/>
+						</div>
+						<?php if(20==$params->get('backup_mail',20)):?>
+							<p>
+								<?php echo JText::sprintf("PLG_TFA_BACKUP_MAIL", JRoute::_('index.php?plugin=tfa&method=recovery')); ?>  
+							</p>
+						<?php endif;?>
+					
+				</div>
 			</div>
-			</div>
-		<p class="tfa-right-align">
-				<span>Developed by <a href="http://www.jpayplans.com" target="_blank">Team PayPlans</a> @ <a href="http://readybytes.in" target="_blank">www.readybytes.in</a></span>
 		
-		</p>
+			<p class="tfa-right-align">
+				<span>Developed by <a href="http://www.readybytes.net" target="_blank">Team-Readybytes</a></span>
+			</p>
+			
 		</div>
 	</div>
 	

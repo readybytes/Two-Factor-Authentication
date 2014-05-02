@@ -37,10 +37,10 @@ class plgSystemTFA extends JPlugin
 		if($this->_enable_for) {
 			$this->_is_activated = $this->_isActivated();
 			$this->_is_varified	 = $this->_isVerified();
-
-			// load language file
-			$this->loadLanguage();
 		}
+                
+		// load language file
+		$this->loadLanguage();
 	}
 	/**
 	 * Check TFA applable for current area (admin, front or both) 
@@ -162,7 +162,12 @@ class plgSystemTFA extends JPlugin
 		// plugin param will be available in tmplt
 		$params 	= $this->params;
 		ob_start();
-			require_once 'tmpl/default.php';
+		/**
+		 * change template as per your need
+		 * Plugin param will be available in your template with $param variable
+		 */
+		require_once 'tmpl/default.php';
+		
 		$tfa_html = ob_get_contents();
 		ob_end_clean();
 		
@@ -273,21 +278,20 @@ class plgSystemTFA extends JPlugin
 		$from 		= $config->sitename;
 		$fromname	= $config->sitename;
 		$recipient	= $email;
-		$subject 	= "$config->sitename Backup Code";
-		//@TODO:: add to language string
-		$body		= "Hello {$user->name}, <br />You have requested for backup code. Your backup code is $backupCode. Now you can enter this code as verification code.";
+		$subject 	= JText::sprintf("PLG_TFA_RECOVERY_MAIL_SUBJECT", $config->sitename);
+		$body		= JText::sprintf("PLG_TFA_RECOVERY_MAIL_BODY", $user->name, $backupCode);
 		
-		$msg = "System Email Fail To : $email";
+		$msg 		= JText::sprintf("PLG_TFA_SYSTEM_EMAIL_FAIL_TO", $email);
 		
 		$jversion = new JVersion;
 		$release = str_replace('.', '', $jversion->RELEASE);
 		if($release >= 30) {
 			$mail= JFactory::getMailer();
 			if(true == $mail->sendMail($from, $fromName, $recipient, $subject, $body, true)){
-				$msg = "Backup code sent";
+				$msg = JText::_("PLG_TFA_BACKUP_CODE_SENT");
 			}
 		}else if(true == JUtility::sendMail($from, $fromname, $recipient, $subject, $body, true)) {
-			$msg = "Backup code sent";
+			$msg = JText::_("PLG_TFA_BACKUP_CODE_SENT");
 		}
 		
 		JFactory::getApplication()->redirect('index.php', $msg);
