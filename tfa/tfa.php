@@ -280,7 +280,6 @@ class plgSystemTFA extends JPlugin
 		$recipient	= $email;
 		$subject 	= JText::sprintf("PLG_TFA_RECOVERY_MAIL_SUBJECT", $config->sitename);
 		$body		= JText::sprintf("PLG_TFA_RECOVERY_MAIL_BODY", $user->name, $backupCode);
-		
 		$msg 		= JText::sprintf("PLG_TFA_SYSTEM_EMAIL_FAIL_TO", $email);
 		
 		$jversion = new JVersion;

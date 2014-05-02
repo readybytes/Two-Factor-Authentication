@@ -1,27 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="system" method="upgrade">
-	<name>Two Factor Authentication</name>
+	<name>PLG_TWO_FACTOR_AUTHENTICATION</name>
 	<author>Team ReadyBytes</author>
 	<creationDate>May 2013</creationDate>
 	<copyright>Copyright (C) 2013 - 2015 Open Source Matters. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<authorEmail>support+payplans@readybytes.in</authorEmail>
+	<authorEmail>support+2fa@readybytes.in</authorEmail>
 	<scriptfile>install.script.php</scriptfile>
 	<version>2.1</version>
-	<description>   &lt;span style="color:green"&gt;Pre-requisite - Google Authentication Mobile app, Barcode scanner.&lt;/span&gt;&lt;/br&gt;
-			&lt;u&gt; How to configure it :&lt;/u&gt; &lt;br /&gt;
-				&lt;ol&gt;
-					&lt;li&gt;&lt;span style="color:red"&gt;STEP-1#&lt;/span&gt; Enable Plugin.(Status Enable->Save) &lt;/li&gt;
-					&lt;li&gt;&lt;span style="color:red"&gt;STEP-2#&lt;/span&gt; In Configure tab you can set it for "Frontend, Backend or Both for specific users." &lt;/li&gt;
-					&lt;li&gt;&lt;span style="color:red"&gt;STEP-3#&lt;/span&gt; Setup an account in &lt;a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en"&gt;Googe Authentication Mobile app.&lt;/a&gt;&lt;/li&gt;
-					&lt;li&gt;&lt;span style="color:red"&gt;STEP-4#&lt;/span&gt; To setup - Scan QR code/Enter Key in Google Authentication Mobile app&lt;/li&gt;
-					&lt;li&gt;&lt;span style="color:red"&gt;STEP-5#&lt;/span&gt; Set Activate to Yes&lt;/li&gt;
-					&lt;li&gt;&lt;span style="color:red"&gt;STEP-6#&lt;/span&gt; Now, Enable Two Factor Authentication under required user in User screen.&lt;/li&gt;
-				&lt;/ol&gt;
-			&lt;strong&gt;&lt;/strong&gt; &lt;span style="color:red"&gt;NOTE - After configurating Two-Way Authenticator make sure that you have scanned QR code or enter key provided in your google authentication app. Otherwise After activation, you can use backup utility code or to deactivate you need to disable it from database.&lt;/span&gt;
-				
-				
-	</description>
+	<description>PLG_TWO_FACTOR_AUTHENTICATION_DESC</description>
 	<files>
 		<filename plugin="tfa">tfa.php</filename>
 		<filename>helper.php</filename>
@@ -66,11 +53,12 @@
 					</field>
 					
 					<field
-                                            name="redirect"	type="text"  
-                                            description=""		
-                                            label="Redirect URL"
-                                            default="index.php"
-                                            />
+                          name="redirect"	
+                          type="hidden"  
+                          description=""		
+                          label="Redirect URL"
+                          default="index.php"
+                    />
 					
 				</fieldset>
 			</fields>

@@ -14,8 +14,8 @@
 				description="PLG_TFA_ACTIVATE_DESC"
 				label="PLG_TFA_ACTIVATE_LABEL"	
 				default="0"
-				id='is_enable'
-				class=""
+				id='tfa_is_enable'
+				class="tfa_is_enable"
 			>
 				<option value='0' > PLG_TFA_NO</option>
 				<option value='1' > PLG_TFA_YES</option>
@@ -25,15 +25,16 @@
 				name="authentication"
 				type="authentication"
 				id="authentication"
-				label="PLG_TFA_AUTHENTICATION"				
-			/>
-			
+				label=""
+				/>
+<!--			label="PLG_TFA_AUTHENTICATION"				-->
 			<field
 				name="backup"
 				type="backup"
 				id="backup"
 				label="PLG_TFA_BACKUP"				
 			/>
+			
 					
 		</fieldset>
 	</fields>

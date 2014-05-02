@@ -49,14 +49,60 @@ class GoogleAuthenticationHelper
 			(function($){  
 				// Required var
 				var loadUrl 	 =	'index.php?plugin=TFA';
+				
+				var check_accountName 
+							= function()
+								{
+									if(!$('#tfa_username').val()) {
+						    			alert('<?php echo Jtext::_('PLG_TFA_ACCOUNT_NAME_REQUIRED');?>');
+						    			$('#tfa_username').focus();
+						    			return false;
+						    		}
+						    		return true;
+								};
+				
+				var check_secretKey 
+							= function()
+								{
+									if(!$('#tfa_secret').val()) {
+						    			alert('<?php echo Jtext::_('PLG_TFA_SECRET_KEY_REQUIRED');?>');
+						    			$('#tfa_secret').focus();
+						    			return false;
+						    		}
+						    		
+						    		return true;
+								};
+								
+<!--	Get QR code							-->
+				var get_qrImage 
+							= function()
+								{
+									if(!$('#tfa_username').val()) {
+										return false;
+									}
+									
+									if(!$('#tfa_secret').val()) {
+										return false;
+									}
+									
+									$.get(
+						        			loadUrl,
+						        			{'method'	 	: 'getQRcode',
+						        			 'tfa_username'	: $('#tfa_username').val(),
+						        			 'tfa_secret' 	: $('#tfa_secret').val()},
+						        			 function(response) {
+						        				$("#tfa_qr_image").html(response);
+						        			}
+						        		);
+								};
+								
+								
 				<!--	 On documnet ready task			-->
 				$(document).ready(function($) { 
 					<!-- Task-1:: get secret key		-->
 					$("#tfa_newsecret").click(function(event) {
 						<!-- Check Account user name    		-->
-			    		if(!$('#tfa_username').val()) {
-			    			alert('Account name field should be required');
-			    			$('#tfa_username').focus();
+			    		if(!check_accountName()) {
 			    			return false;
 			    		}
 						<!-- get seret key and placed proper location  		-->
@@ -65,31 +111,57 @@ class GoogleAuthenticationHelper
 			        			{'method':'getsecretkey'},
 			        			function(response) {
 			        				$("#tfa_secret").attr('value', response);
+			        				<!-- get qr image  		-->
+									get_qrImage();
 			        			}
 			        		);
+			        	
 			       		event.preventDefault();
 				    });
 				    
 				    <!-- Task-2:: get QR Code		-->
 					$("#tfa_qr_get").click(function(event) {
-						<!-- username & Secret Key required   		-->
-			    		if(!$('#tfa_secret').val()) {
-			    			alert('Account name & Secre Key must be required for QR code');
-			    			$('#tfa_secret').focus();
+					
+						<!-- Check Account user name    		-->
+			    		if(!check_accountName()) {
 			    			return false;
 			    		}
-						<!-- get seret key and placed proper location  		-->
-			    		$.get(
-			        			loadUrl,
-			        			{'method'	 	: 'getQRcode',
-			        			 'tfa_username'	: $('#tfa_username').val(),
-			        			 'tfa_secret' 	: $('#tfa_secret').val()},
-			        			 function(response) {
-			        				$("#tfa_qr_image").html(response);
-			        			}
-			        		);
+						
+						<!-- Secret Key required   		-->
+			    		if(!check_secretKey()) {
+			    			return false;
+			    		}
+			    		
+						<!-- get qr image  		-->
+						get_qrImage();
+			    		
 			        	event.preventDefault();
 				    });
+				    
+				    
+				<!-- Task-3 : validation before Activate 2fa system				    -->
+					$(".tfa_is_enable").click(function(event) {
+						
+						var value = $(".tfa_is_enable input:radio:checked").val();
+						
+						if (1 == value) {
+							// validation required
+							if(!check_accountName() || !check_secretKey() ) {
+								//changed selected element
+								$(".tfa_is_enable input:radio[value='0']").prop("checked","checked");
+							}
+							
+						}
+					});
+					
+					
+				<!-- Task-4 : When you will change account name then need to regenerate Q-R Image    -->
+					$("#tfa_username").on("change paste", function() {
+					   <!-- get qr image  		-->
+						get_qrImage();
+					});
+
+					
 				});
 				
 			})(tfa.jQuery);
@@ -123,7 +195,7 @@ class GoogleAuthenticationHelper
 	 * Update plugin params
 	 * @param should b JRegistry object
 	 */
-	static function updatepluginParams($params)
+	static function XXupdatepluginParams($params)
 	{ 
 		// convert JSON strin
 		$params = $params->toString();
