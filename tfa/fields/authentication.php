@@ -24,6 +24,7 @@ class JFormFieldAuthentication extends JFormField
 			<label class=""><?php echo JText::_('PLG_TFA_USERNAME');?></label>
 				<input 	type="text" size="25" id="tfa_username" name="<?php echo $name?>[username]"  
 						value="<?php echo @$value['username'];?>"  title="<?php echo JText::_('PLG_TFA_USERNAME_DESC');?>" />
+				<br />		
 			<!-- Secret Key		-->
 			<label class=""><?php echo JText::_('PLG_TFA_SECRET_KEY');?></label>
 				<input type="text" size="25" id="tfa_secret" name="<?php echo $name?>[secret]"  value="<?php echo @$value['secret']; ?>" maxlength="16" readonly="true"/>
