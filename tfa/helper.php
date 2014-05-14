@@ -149,7 +149,15 @@ class GoogleAuthenticationHelper
 							if(!check_accountName() || !check_secretKey() ) {
 								//changed selected element
 								$(".tfa_is_enable input:radio[value='0']").prop("checked","checked");
+								return false;
 							}
+							
+							var r=confirm("<?php echo JText::_('PLG_TFA_CONFIRM_ENABLE'); ?>");
+							
+							if (r==false) {
+							  	//changed selected element
+								$(".tfa_is_enable input:radio[value='0']").prop("checked","checked");
+							 }
 							
 						}
 					});

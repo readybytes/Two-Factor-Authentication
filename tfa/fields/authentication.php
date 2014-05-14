@@ -41,8 +41,11 @@ class JFormFieldAuthentication extends JFormField
 				}
 			?>
 			</div>
-			
 		</fieldset>
+		
+		<div>
+		 	<?php echo JText::_("PLG_TFA_SITE_MESSAGE");?>
+		 </div>
 		
 		<?php
 		$html = ob_get_contents();
