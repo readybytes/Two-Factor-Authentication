@@ -223,7 +223,7 @@ class plgSystemTFA extends JPlugin
 		
 		// is backup utlity used
 		$backupCode = $tfa->backup->code; 
-		if(!$this->_is_varified && $backupCode && $key === $backupCode) {
+		if(!$this->_is_varified && $backupCode && $key == $backupCode) {
 			$this->_is_varified = true;
 			$this->_changeCodeFrequency();
 		}
