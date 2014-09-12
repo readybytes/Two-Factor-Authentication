@@ -108,6 +108,65 @@ class plgSystemTFA extends JPlugin
 		return true;
 	}
 	
+	public function onContentPrepareData($context, $data)
+	{
+		// only operate on known contexts
+		if (!in_array($context, array('com_admin.profile', 'com_users.user', 'com_users.profile')) || !is_object($data))
+		{
+			return true;
+		}
+		
+		// register helpers to render tfa fields
+		foreach (array('activate', 'authentication', 'backup') as $field)
+		{
+			if (!JHtml::isRegistered($key = 'users.' . $field))
+			{
+				JHtml::register($key, array(__CLASS__, $field));
+			}
+		}
+	}
+	
+	/**
+	 * Static function to render the "activate" field value
+	 * 
+	 * @param type $value
+	 * @return string
+	 */
+	public static function activate($value)
+	{
+		return JText::_($value ? 'JYES' : 'JNO');
+	}
+	
+	/**
+	 * Static function to render the "authentication" fields values
+	 * 
+	 * @param array $value
+	 * @return string
+	 */
+	public static function authentication($value)
+	{
+		if (!is_array($value))
+		{
+			return '';
+		}
+		return implode(' :: ', $value);
+	}
+	
+	/**
+	 * Static function to render the "backup" fields values
+	 * 
+	 * @param array $value
+	 * @return type
+	 */
+	public static function backup($value)
+	{
+		if (!is_array($value))
+		{
+			return '';
+		}
+		return $value['code'] . ' (' . JText::_($value['count'] ? 'PLG_TFA_CODE_ONE_TIME' : 'PLG_TFA_CODE_UNLIMITED') . ')';
+	}
+	
 	function onAfterRoute()
 	{
 		// if user not logged-in
