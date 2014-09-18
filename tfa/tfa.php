@@ -268,6 +268,8 @@ class plgSystemTFA extends JPlugin
 	 */
 	function recovery() 
 	{
+		$this->loadLanguage();
+		
 		// get current user
 		$user = JFactory::getUser();
 		$email = $user->email;
