@@ -1,4 +1,17 @@
 
+## 2.2 (18 Nov, 2014)
+
+Bugfixes:
+
+  - Minor fixes to italian language.
+  - Add explicit language load on recovery action.
+  - Added helper methods to render field values
+  
+Contributors :
+
+ - @jeffchannell (https://github.com/jeffchannell)
+ - @gibiwatch (https://github.com/gibiwatch)
+
 ## 2.1 (16 May, 2014)
 
 Features:
@@ -17,6 +30,7 @@ Bugfixes:
   - Restaure JFactory::getMailler deleted by error
   
 Contributors :
+
  - @Adam Przybylski 
  - @pvullioud (https://github.com/pvullioud)
  - @StagiaireInetis (https://github.com/StagiaireInetis)
