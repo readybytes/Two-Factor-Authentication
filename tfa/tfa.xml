@@ -7,7 +7,7 @@
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>support+2fa@readybytes.in</authorEmail>
 	<scriptfile>install.script.php</scriptfile>
-	<version>2.1</version>
+	<version>2.2</version>
 	<description>PLG_TWO_FACTOR_AUTHENTICATION_DESC</description>
 	<files>
 		<filename plugin="tfa">tfa.php</filename>
